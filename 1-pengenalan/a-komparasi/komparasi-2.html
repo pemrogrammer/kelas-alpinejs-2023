@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Komparasi 2 Vanilla JS / JQuery / Alpine JS</title>
+
+	<!-- Include JQuery Lib -->
+	<script src="https://code.jquery.com/jquery-3.6.3.js"
+		integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+	<!-- Include Alpine JS Lib -->
+	<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.5/dist/cdn.min.js"></script>
+</head>
+
+<body>
+	<p class="px-2"><a href="https://github.com/pemrogrammer/kelas-alpinejs-2023/1-pengenalan/a-komparasi/komparasi-2.html" target="_blank"> 🥵 source code</a></p>
+
+	<!-- Vanilla -->
+	<button id="btnVanilla">Vanilla JavaScript</button>
+
+	<!-- JQuery -->
+	<button id="btnJQuery">JQuery</button>
+
+	<!-- Alpine JS -->
+	<button x-data="{clicked :false}" x-on:click="clicked = !clicked"
+		:style="clicked ? 'background-color: blue' : null">Alpine JS</button>
+
+
+	<script>
+		// Vanilla Javascript
+		document.getElementById("btnVanilla").addEventListener("click", function () {
+			if (this.style.backgroundColor === "red") {
+				this.style.backgroundColor = "initial"
+			} else {
+				this.style.backgroundColor = "red";
+			}
+		});
+
+		// JQuery
+		$("#btnJQuery").click(function () {
+			if ($(this).css("background-color") === "rgb(0, 128, 0)") {
+				$(this).css("background-color", "initial");
+			} else {
+				$(this).css("background-color", "green");
+			}
+		});
+
+		// Alpine JS
+
+	</script>
+</body>
+
+</html>

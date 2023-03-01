@@ -2,6 +2,9 @@
 
 oleh Klub Pemgrograman TI POLNES
 
+## Daftar _Project_:
+- Aplikasi X oleh Zain Adam
+
 ## Daftar Kode:
 - 1\. Pengenalan
   - a. Komparasi

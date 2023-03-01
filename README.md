@@ -3,10 +3,13 @@
 oleh Klub Pemgrograman TI POLNES
 
 ## Daftar _Project_:
+
 - Aplikasi X oleh Zain Adam
 - Aplikasi To Do List oleh Pamela Sarnia
+- Aplikasi Hello World! oleh Theo 😎
 
 ## Daftar Kode:
+
 - 1\. Pengenalan
   - a. Komparasi
     - i. [Komparasi 1](1-pengenalan/a-komparasi/komparasi-1.html)

@@ -7,6 +7,7 @@ oleh Klub Pemgrograman TI POLNES
 - Aplikasi X oleh Zain Adam
 - Aplikasi To Do List oleh Pamela Sarnia
 - Aplikasi Suit oleh emakCoding
+- Aplikasi Manajemen Lomba KRC oleh Syamsu Nur Hidayat
 
 ## Daftar Kode:
 

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Atribut / Directive pada Alpine.js</title>
+
+	<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.5/dist/cdn.min.js"></script>
+</head>
+
+<body>
+	<a href="https://github.com/pemrogrammer/kelas-alpinejs-2023/blob/main/2-dasar/c-instalasi/index.html"
+		target="_blank">source code</a>
+
+	<h1>Atribut / Directive pada Alpine.js</h1>
+
+	<h2>x-data</h2>
+
+	<p>Berfungsi sebagai inisiali komponen Alpine. Selain itu untuk mendeklarasikan data pada komponen</p>
+
+	<!-- x-data tanpa nilai -->
+	<div x-data>
+		<p x-text="'ini adalah komponen Alpine'"></p>
+	</div>
+
+	<!-- x-data dengan nilai -->
+	<div x-data="{
+		teks1: 'ini adalah komponen Alpine',
+		teks2: 'Halo dunia',
+
+		// method
+		teks3() {
+			return 'ini adalah method Alpine'
+		}
+	}">
+		<p x-text="teks1"></p>
+		<p x-text="teks2"></p>
+		<p x-text="teks3"></p>
+	</div>
+
+	<!-- x-data bersarang -->
+	<div x-data="{varX: 'a'}">
+		<div x-init="varX = 'b'">
+			<p x-text="varX"></p>
+		</div>
+
+		<p x-text="varX"></p>
+	</div>
+
+	<h2>x-init</h2>
+
+	<p>Berfungsi untuk menjalankan kode JavaScript pada saat komponen pertama kali diinisialisasi</p>
+
+	<div x-data>
+		<p x-init="$el.style.color = 'blue'">contoh untuk x-init</p>
+	</div>
+
+	<div x-data="{ init() { $el.style.backgroundColor = 'red'; console.log('init') }}">
+		<p>contoh untuk x-init</p>
+	</div>
+
+	<h2>x-show</h2>
+
+	<p>Berfungsi untuk menampilkan elemen HTML jika nilai dari atribut x-show adalah true</p>
+
+	<div x-data="{isShow: false}">
+		<h3 x-show="isShow">Ini adalah contoh x-show</h3>
+
+		<button x-on:click="isShow = !isShow" x-text="isShow ? 'sembunyikan' : 'tampilkan'"></button>
+	</div>
+</body>
+
+</html>

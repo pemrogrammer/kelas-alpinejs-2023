@@ -4,6 +4,7 @@ oleh Klub Pemgrograman TI POLNES
 
 ## Daftar _Project_:
 - Aplikasi X oleh Zain Adam
+- Aplikasi To Do List oleh Pamela Sarnia
 
 ## Daftar Kode:
 - 1\. Pengenalan

@@ -18,7 +18,7 @@
 
 	<h2>x-data</h2>
 
-	<p>Berfungsi sebagai inisiali komponen Alpine. Selain itu untuk mendeklarasikan data pada komponen</p>
+	<p>Berfungsi untuk meng-inisialisasi komponen Alpine. Selain itu untuk mendeklarasikan data pada komponen</p>
 
 	<!-- x-data tanpa nilai -->
 	<div x-data>
@@ -70,6 +70,220 @@
 
 		<button x-on:click="isShow = !isShow" x-text="isShow ? 'sembunyikan' : 'tampilkan'"></button>
 	</div>
+
+	<h2>x-bind</h2>
+
+	<p>Berfungsi untuk mengikat nilai dari atribut x-bind ke atribut HTML</p>
+
+
+	<style>
+		.bg-red {
+			background-color: red;
+		}
+
+		.text-red {
+			color: red;
+		}
+
+		.bg-green {
+			background-color: green;
+		}
+
+		.text-green {
+			color: green;
+		}
+
+		.kelas {
+			background-color: black;
+		}
+	</style>
+
+	<h3>Basic</h3>
+
+	<div x-data="{kelas: 'bg-red'}">
+		<div class="bg-red">contoh tanpa x-bind</div>
+		<div x-bind:class="kelas">contoh x-bind</div>
+
+		<input type="text" @keyup="kelas=$el.value">
+	</div>
+
+	<h3>Shorthand</h3>
+
+	<div x-data="{kelas: 'bg-red'}">
+		<div x-bind:class="kelas">contoh x-bind Basic</div>
+		<div :class="kelas">contoh x-bind Shorthand</div>
+	</div>
+
+	<h3>Boolean</h3>
+
+	<div x-data x-bind:class="{
+		'bg-red': true,
+		'text-red': false,
+		'bg-green': false,
+		'text-green': true
+	}">contoh x-bind dengan boolean</div>
+
+	<h3>Class Default</h3>
+
+	<div x-data class="bg-red" :class="'text-red'">contoh x-bind class default</div>
+
+	<h3>Pake IF</h3>
+
+	<div x-data="{isRed: true}">
+		<div :class="isRed ? 'bg-red' : 'bg-green'" style="transition: 800ms;">contoh x-bind dengan ekspresi if</div>
+		<div :class="isRed ? 'bg-red' : 'bg-green'" x-transition:enter="transition ease-out duration-1000">
+			contoh x-bind dengan ekspresi if
+		</div>
+
+		<button @click="isRed = !isRed">ganti warna</button>
+	</div>
+
+	<h3>x-bind atribut lain</h3>
+
+	<h4>style</h4>
+	<div x-data="{customStyle: null}">
+		<div :style="customStyle">atribute style</div>
+		<input type="text" @keyup="customStyle = $el.value">
+	</div>
+
+	<h4>src image</h4>
+
+	<div x-data="{
+		gambar1: 'https://fastly.picsum.photos/id/29/200/300.jpg?hmac=LrtD-VNd4eRyyMbqI05Mpy4EQNgTdZkSEt5ULyXx4lw',
+		gambar2: 'https://fastly.picsum.photos/id/70/200/300.jpg?hmac=8-6v4fVxk6exesGT53s01yaJuediQIreacSHqZY3mV4',
+		gambarTampil: null
+	}">
+		<img :src="gambarTampil" x-init="gambarTampil = gambar1"
+			@click="gambarTampil = gambarTampil == gambar1 ? gambar2 : gambar1" alt="">
+	</div>
+
+	<h2>x-on</h2>
+
+	<p>Berfungsi untuk menambahkan event listener pada elemen HTML</p>
+
+	<div x-data="{isShow: false}">
+		<h3 x-show="isShow">Ini adalah contoh x-show</h3>
+
+		<button x-on:click="isShow = !isShow" x-text="isShow ? 'sembunyikan' : 'tampilkan'"></button>
+
+		<button @click="isShow = !isShow" x-text="isShow ? 'sembunyikan' : 'tampilkan'"></button>
+	</div>
+
+	<h3>Keyboard event</h3>
+
+	<div x-data="{teks: 'nilai awal'}">
+		<h3 x-text="teks"></h3>
+
+		<input type="text" x-on:keyup.enter="teks = $el.value">
+	</div>
+
+	<h3>custom key</h3>
+
+	<h4>delete</h4>
+
+	<input x-data type="text" @keydown="keydownCustom">
+
+	<script>
+		function keydownCustom(event) {
+
+			if (event.key == 'Delete' || event.key == 'Backspace') {
+				event.preventDefault();
+				alert('isian tidak dapat dihapus');
+			}
+
+		}
+	</script>
+
+
+	<h3>Custom Event</h3>
+
+	<div x-data @loading="alert('sedang loading')">
+		<button @click="$dispatch('loading')">picu loading</button>
+	</div>
+
+	<h2>x-text</h2>
+
+	<p>Berfungsi untuk mengganti isi teks dari elemen HTML</p>
+	<p>Setara dengan <code>element.innerText</code> pada vanilla JavaScript</p>
+
+	<p x-data x-text="'aswd'"></p>
+	<code x-data x-text="`console.log('hello world');`"></code>
+
+	<div x-data="{
+		teks: 'nilai awal'
+	}">
+		<h3 x-text="teks"></h3>
+		<div x-text="teks"></div>
+
+		<input type="text" @keyup="teks = $el.value">
+	</div>
+
+	<h2>x-html</h2>
+
+	<p>Berfungsi untuk mengganti isi HTML dari elemen HTML</p>
+	<p>setara dengan <code>element.innerHTML</code> pada vanilla JavaScript</p>
+
+	<div x-data="{
+		html: 'nilai awal'
+	}">
+		<h3 x-html="html"></h3>
+		<div x-html="html"></div>
+
+		<input type="text" @keyup="html = $el.value">
+	</div>
+
+
+	<h2>x-model</h2>
+
+	<p>Berfungsi untuk mengikat properti dengan tag-tag input HTML secara dua arah</p>
+
+	<div x-data="{
+		teks: 'nilai awal'
+	}">
+		<h3 x-text="teks"></h3>
+
+		<input type="text" x-model="teks">
+		<textarea x-model="teks"></textarea>
+		<select x-model="teks">
+			<option value=""></option>
+			<option value="Indonesia">Indonesia</option>
+			<option value="Amerika">Amerika</option>
+			<option value="Cina">Cina</option>
+		</select>
+	</div>
+
+	<h3>Checkbox</h3>
+
+	<div x-data="{
+		ceklis1: false,
+		ceklis2: false,
+		ceklis3: false,
+		ceklis4: false,
+	}">
+		<input type="checkbox" x-model="ceklis1"> Cek list 1<br>
+		<input type="checkbox" x-model="ceklis2"> Cek list 2<br>
+		<input type="checkbox" x-model="ceklis3"> Cek list 3<br>
+		<input type="checkbox" x-model="ceklis4"> Cek list 4<br>
+
+		<h4>Hasil</h4>
+		<p x-text="ceklis1"></p>
+		<p x-text="ceklis2"></p>
+		<p x-text="ceklis3"></p>
+		<p x-text="ceklis4"></p>
+	</div>
+
+	<h3>Radio</h3>
+
+	<div x-data="{
+		gender: null
+	}">
+		<input type="radio" name="gender" x-model="gender" value="laki-laki">Laki-laki<br>
+		<input type="radio" name="gender" x-model="gender" value="perempuan">perempuan<br>
+
+		<p>hasil</p>
+		<p x-text="gender"></p>
+	</div>
+
 </body>
 
 </html>

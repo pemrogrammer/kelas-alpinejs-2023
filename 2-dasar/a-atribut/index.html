@@ -284,6 +284,128 @@
 		<p x-text="gender"></p>
 	</div>
 
+	<h2>x-modelable</h2>
+
+	<p>Berfungsi untuk mengikat properti pada komponen saat ini ke atribut <code>x-model</code>-nya, untuk mengekspos
+		properti keluar komponen.</p>
+
+	<!-- komponen1 -->
+	<div x-data="{ number: 5 }">
+
+		<!-- komponen1.1 -->
+		<div x-data="{ count: 0 }" x-modelable="count" x-model="number">
+			<button @click="count++">Increment</button>
+		</div>
+
+		Number: <span x-text="number"></span>
+	</div>
+
+
+	<h2>x-for</h2>
+
+	<p>Berfungsi untuk melakukan perulangan pada elemen HTML</p>
+
+	<h3>contoh untuk <code>&lt;ul&gt;</code>:</h3>
+	<ul x-data="{people: [
+			{name: 'Andi', age: 20, instagram: '@andi'},
+			{name: 'Budi', age: 21, instagram: '@budi'},
+			{name: 'Caca', age: 22, instagram: '@caca'},
+		]}">
+
+		<template x-for="person in people">
+			<li>
+				<h3 x-text="person.name"></h3>
+				<a :href="'https://instagram.com/' + person.instagram">instagram</a>
+			</li>
+			<li>
+				<!-- hanya turunan pertama yang dianggap -->
+				test
+			</li>
+		</template>
+	</ul>
+
+	<h3>Contoh untuk <code>&lt;table&gt;</code>:</h3>
+
+	<table border="1px" x-data="{teams: [
+			{name: 'Barcelona', city: 'Barcelona', country: 'Spain'},
+			{name: 'Real Madrid', city: 'Madrid', country: 'Spain'},
+			{name: 'Manchester United', city: 'Manchester', country: 'England'},
+
+		]}">
+
+		<thead>
+			<tr>
+				<th>Team</th>
+				<th>City</th>
+				<th>Country</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- Contoh manual -->
+			<!-- <tr>
+				<td x-text="teams[0].name"></td>
+				<td x-text="teams[0].city"></td>
+				<td x-text="teams[0].country"></td>
+			</tr>
+			<tr>
+				<td x-text="teams[1].name"></td>
+				<td x-text="teams[1].city"></td>
+				<td x-text="teams[1].country"></td>
+			</tr>
+			<tr>
+				<td x-text="teams[2].name"></td>
+				<td x-text="teams[2].city"></td>
+				<td x-text="teams[2].country"></td>
+			</tr> -->
+
+			<!-- Contoh dengan looping -->
+			<template x-for="team in teams">
+				<tr>
+					<td x-text="team.name"></td>
+					<td x-text="team.city"></td>
+					<td x-text="team.country"></td>
+				</tr>
+			</template>
+		</tbody>
+	</table>
+
+	<h2>x-transition</h2>
+
+	<p>Berfungsi untuk membuat animasi pada elemen HTML</p>
+
+	<div x-data="{ isShow: false }">
+		<button @click="isShow = !isShow">Toggle</button>
+
+		<div x-show="isShow" x-transition>
+			<p>Ini adalah paragraf yang akan ditampilkan dan disembunyikan</p>
+		</div>
+	</div>
+
+	<h2>x-if</h2>
+
+	<p>Berfungsi untuk menampilkan elemen HTML jika kondisi bernilai <code>true</code></p>
+
+	<div x-data="{ isShow: false }">
+		<button @click="isShow = !isShow">Toggle</button>
+
+		<p x-text="if(isShow) {
+			return 'tampil';
+		} else {
+			return 'tidak tampil';
+		}"></p>
+
+		
+		<p x-text="isShow ? 'tampil' : 'tidak tampil'"></p>
+
+
+		<template x-if="isShow">
+			<div>
+				<p>Ini adalah paragraf yang akan ditampilkan dan disembunyikan</p>
+			</div>
+		</template>
+	</div>
+
+	<div style="margin-bottom: 50vh;"></div>
 </body>
 
 </html>

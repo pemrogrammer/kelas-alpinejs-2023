@@ -317,6 +317,7 @@
 				<h3 x-text="person.name"></h3>
 				<a :href="'https://instagram.com/' + person.instagram">instagram</a>
 			</li>
+
 			<li>
 				<!-- hanya turunan pertama yang dianggap -->
 				test
@@ -394,7 +395,7 @@
 			return 'tidak tampil';
 		}"></p>
 
-		
+
 		<p x-text="isShow ? 'tampil' : 'tidak tampil'"></p>
 
 
@@ -404,6 +405,99 @@
 			</div>
 		</template>
 	</div>
+
+	<h2>x-effect</h2>
+
+	<p>Berfungsi untuk menjalankan baris kode javascript ketika parameter berubah</p>
+
+	<div x-data="{ label: 'Hello'}" x-effect="console.log(label);">
+		<button @click="label += ' World!'">Change Message</button>
+	</div>
+
+	<h3>contoh</h3>
+
+	<p>kalkulator akar</p>
+
+	<div x-data="{input: 0, output: 0}">
+		<h4>Hasil:</h4>
+
+		<p x-effect="output = Math.sqrt(input)" x-text="output"></p>
+
+		<input type="number" x-model="input">
+	</div>
+
+
+
+	<h2>x-ignore</h2>
+
+	<p>Berfungsi untuk mengabaikan komponen alpine di dalamnya</p>
+
+	<div x-data="{ label: 'From Alpine' }">
+		<div x-ignore>
+			<span x-text="label"></span>
+
+			<div x-data x-text="'test ignore'"></div>
+		</div>
+	</div>
+
+
+	<h2>x-ref</h2>
+
+	<p>Untuk membuat referensi (reference) terhadap elemen untuk dimanipulasi</p>
+
+	<h3>Contoh 1</h3>
+	<div x-data>
+		<button @click="$refs.text.remove()">Remove Text</button>
+
+		<span x-ref="text">Hello 👋</span>
+	</div>
+
+	<h3>Contoh 2</h3>
+
+	<div x-data>
+		<h4 x-ref="text1">Text 1</h4>
+		<h4 x-ref="text2">Text 2</h4>
+		<h4 x-ref="text3">Text 3</h4>
+
+		<div x-data x-init="
+			$refs.text1.style.color='red';
+			$refs.text2.style.backgroundColor='red';
+			$refs.text3.style.backgroundColor='blue';
+		"></div>
+
+		<button @click="$refs.text1.style.color='red';">color to red</button>
+		<button @click="$refs.text1.style.color='black';">color to black</button>
+	</div>
+
+
+	<h2>x-id</h2>
+
+	<div>
+		<label for="input1">input1</label>
+		<input type="text" name="" id="input1">
+	</div>
+
+	<div>
+		<!-- id bentrok -->
+		<label for="input1">input1</label>
+		<input type="text" name="" id="input1">
+	</div>
+
+	<div x-data="{ id: $id('text-input') }">
+		<label :for="id">Input2</label>
+		<!-- "text-input-2" -->
+
+		<input type="text" :id="id"> <!-- "text-input-2" -->
+	</div>
+
+	<div x-data="{ id: $id('text-input') }">
+		<label :for="id">input3</label>
+		<!-- "text-input-3" -->
+
+		<input type="text" :id="id"> <!-- "text-input-3" -->
+	</div>
+
+
 
 	<div style="margin-bottom: 50vh;"></div>
 </body>

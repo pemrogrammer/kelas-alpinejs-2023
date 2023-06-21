@@ -2,31 +2,31 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Atribut / Directive pada Alpine.js</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atribut / Directive pada Alpine.js</title>
 
-	<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.5/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.5/dist/cdn.min.js"></script>
 </head>
 
 <body>
-	<a href="https://github.com/pemrogrammer/kelas-alpinejs-2023/blob/main/2-dasar/c-instalasi/index.html"
-		target="_blank">source code</a>
+    <a href="https://github.com/pemrogrammer/kelas-alpinejs-2023/blob/main/2-dasar/c-instalasi/index.html"
+        target="_blank">source code</a>
 
-	<h1>Atribut / Directive pada Alpine.js</h1>
+    <h1>Atribut / Directive pada Alpine.js</h1>
 
-	<h2>x-data</h2>
+    <h2>x-data</h2>
 
-	<p>Berfungsi untuk meng-inisialisasi komponen Alpine. Selain itu untuk mendeklarasikan data pada komponen</p>
+    <p>Berfungsi untuk meng-inisialisasi komponen Alpine. Selain itu untuk mendeklarasikan data pada komponen</p>
 
-	<!-- x-data tanpa nilai -->
-	<div x-data>
-		<p x-text="'ini adalah komponen Alpine'"></p>
-	</div>
+    <!-- x-data tanpa nilai -->
+    <div x-data>
+        <p x-text="'ini adalah komponen Alpine'"></p>
+    </div>
 
-	<!-- x-data dengan nilai -->
-	<div x-data="{
+    <!-- x-data dengan nilai -->
+    <div x-data="{
 		teks1: 'ini adalah komponen Alpine',
 		teks2: 'Halo dunia',
 
@@ -35,315 +35,315 @@
 			return 'ini adalah method Alpine'
 		}
 	}">
-		<p x-text="teks1"></p>
-		<p x-text="teks2"></p>
-		<p x-text="teks3"></p>
-	</div>
+        <p x-text="teks1"></p>
+        <p x-text="teks2"></p>
+        <p x-text="teks3"></p>
+    </div>
 
-	<!-- x-data bersarang -->
-	<div x-data="{varX: 'a'}">
-		<div x-init="varX = 'b'">
-			<p x-text="varX"></p>
-		</div>
+    <!-- x-data bersarang -->
+    <div x-data="{varX: 'a'}">
+        <div x-init="varX = 'b'">
+            <p x-text="varX"></p>
+        </div>
 
-		<p x-text="varX"></p>
-	</div>
+        <p x-text="varX"></p>
+    </div>
 
-	<h2>x-init</h2>
+    <h2>x-init</h2>
 
-	<p>Berfungsi untuk menjalankan kode JavaScript pada saat komponen pertama kali diinisialisasi</p>
+    <p>Berfungsi untuk menjalankan kode JavaScript pada saat komponen pertama kali diinisialisasi</p>
 
-	<div x-data>
-		<p x-init="$el.style.color = 'blue'">contoh untuk x-init</p>
-	</div>
+    <div x-data>
+        <p x-init="$el.style.color = 'blue'">contoh untuk x-init</p>
+    </div>
 
-	<div x-data="{ init() { $el.style.backgroundColor = 'red'; console.log('init') }}">
-		<p>contoh untuk x-init</p>
-	</div>
+    <div x-data="{ init() { $el.style.backgroundColor = 'red'; console.log('init') }}">
+        <p>contoh untuk x-init</p>
+    </div>
 
-	<h2>x-show</h2>
+    <h2>x-show</h2>
 
-	<p>Berfungsi untuk menampilkan elemen HTML jika nilai dari atribut x-show adalah true</p>
+    <p>Berfungsi untuk menampilkan elemen HTML jika nilai dari atribut x-show adalah true</p>
 
-	<div x-data="{isShow: false}">
-		<h3 x-show="isShow">Ini adalah contoh x-show</h3>
+    <div x-data="{isShow: false}">
+        <h3 x-show="isShow">Ini adalah contoh x-show</h3>
 
-		<button x-on:click="isShow = !isShow" x-text="isShow ? 'sembunyikan' : 'tampilkan'"></button>
-	</div>
+        <button x-on:click="isShow = !isShow" x-text="isShow ? 'sembunyikan' : 'tampilkan'"></button>
+    </div>
 
-	<h2>x-bind</h2>
+    <h2>x-bind</h2>
 
-	<p>Berfungsi untuk mengikat nilai dari atribut x-bind ke atribut HTML</p>
+    <p>Berfungsi untuk mengikat nilai dari atribut x-bind ke atribut HTML</p>
 
 
-	<style>
-		.bg-red {
-			background-color: red;
-		}
+    <style>
+        .bg-red {
+            background-color: red;
+        }
 
-		.text-red {
-			color: red;
-		}
+        .text-red {
+            color: red;
+        }
 
-		.bg-green {
-			background-color: green;
-		}
+        .bg-green {
+            background-color: green;
+        }
 
-		.text-green {
-			color: green;
-		}
+        .text-green {
+            color: green;
+        }
 
-		.kelas {
-			background-color: black;
-		}
-	</style>
+        .kelas {
+            background-color: black;
+        }
+    </style>
 
-	<h3>Basic</h3>
+    <h3>Basic</h3>
 
-	<div x-data="{kelas: 'bg-red'}">
-		<div class="bg-red">contoh tanpa x-bind</div>
-		<div x-bind:class="kelas">contoh x-bind</div>
+    <div x-data="{kelas: 'bg-red'}">
+        <div class="bg-red">contoh tanpa x-bind</div>
+        <div x-bind:class="kelas">contoh x-bind</div>
 
-		<input type="text" @keyup="kelas=$el.value">
-	</div>
+        <input type="text" @keyup="kelas=$el.value">
+    </div>
 
-	<h3>Shorthand</h3>
+    <h3>Shorthand</h3>
 
-	<div x-data="{kelas: 'bg-red'}">
-		<div x-bind:class="kelas">contoh x-bind Basic</div>
-		<div :class="kelas">contoh x-bind Shorthand</div>
-	</div>
+    <div x-data="{kelas: 'bg-red'}">
+        <div x-bind:class="kelas">contoh x-bind Basic</div>
+        <div :class="kelas">contoh x-bind Shorthand</div>
+    </div>
 
-	<h3>Boolean</h3>
+    <h3>Boolean</h3>
 
-	<div x-data x-bind:class="{
+    <div x-data x-bind:class="{
 		'bg-red': true,
 		'text-red': false,
 		'bg-green': false,
 		'text-green': true
 	}">contoh x-bind dengan boolean</div>
 
-	<h3>Class Default</h3>
+    <h3>Class Default</h3>
 
-	<div x-data class="bg-red" :class="'text-red'">contoh x-bind class default</div>
+    <div x-data class="bg-red" :class="'text-red'">contoh x-bind class default</div>
 
-	<h3>Pake IF</h3>
+    <h3>Pake IF</h3>
 
-	<div x-data="{isRed: true}">
-		<div :class="isRed ? 'bg-red' : 'bg-green'" style="transition: 800ms;">contoh x-bind dengan ekspresi if</div>
-		<div :class="isRed ? 'bg-red' : 'bg-green'" x-transition:enter="transition ease-out duration-1000">
-			contoh x-bind dengan ekspresi if
-		</div>
+    <div x-data="{isRed: true}">
+        <div :class="isRed ? 'bg-red' : 'bg-green'" style="transition: 800ms;">contoh x-bind dengan ekspresi if</div>
+        <div :class="isRed ? 'bg-red' : 'bg-green'" x-transition:enter="transition ease-out duration-1000">
+            contoh x-bind dengan ekspresi if
+        </div>
 
-		<button @click="isRed = !isRed">ganti warna</button>
-	</div>
+        <button @click="isRed = !isRed">ganti warna</button>
+    </div>
 
-	<h3>x-bind atribut lain</h3>
+    <h3>x-bind atribut lain</h3>
 
-	<h4>style</h4>
-	<div x-data="{customStyle: null}">
-		<div :style="customStyle">atribute style</div>
-		<input type="text" @keyup="customStyle = $el.value">
-	</div>
+    <h4>style</h4>
+    <div x-data="{customStyle: null}">
+        <div :style="customStyle">atribute style</div>
+        <input type="text" @keyup="customStyle = $el.value">
+    </div>
 
-	<h4>src image</h4>
+    <h4>src image</h4>
 
-	<div x-data="{
+    <div x-data="{
 		gambar1: 'https://fastly.picsum.photos/id/29/200/300.jpg?hmac=LrtD-VNd4eRyyMbqI05Mpy4EQNgTdZkSEt5ULyXx4lw',
 		gambar2: 'https://fastly.picsum.photos/id/70/200/300.jpg?hmac=8-6v4fVxk6exesGT53s01yaJuediQIreacSHqZY3mV4',
 		gambarTampil: null
 	}">
-		<img :src="gambarTampil" x-init="gambarTampil = gambar1"
-			@click="gambarTampil = gambarTampil == gambar1 ? gambar2 : gambar1" alt="">
-	</div>
+        <img :src="gambarTampil" x-init="gambarTampil = gambar1"
+            @click="gambarTampil = gambarTampil == gambar1 ? gambar2 : gambar1" alt="">
+    </div>
 
-	<h2>x-on</h2>
+    <h2>x-on</h2>
 
-	<p>Berfungsi untuk menambahkan event listener pada elemen HTML</p>
+    <p>Berfungsi untuk menambahkan event listener pada elemen HTML</p>
 
-	<div x-data="{isShow: false}">
-		<h3 x-show="isShow">Ini adalah contoh x-show</h3>
+    <div x-data="{isShow: false}">
+        <h3 x-show="isShow">Ini adalah contoh x-show</h3>
 
-		<button x-on:click="isShow = !isShow" x-text="isShow ? 'sembunyikan' : 'tampilkan'"></button>
+        <button x-on:click="isShow = !isShow" x-text="isShow ? 'sembunyikan' : 'tampilkan'"></button>
 
-		<button @click="isShow = !isShow" x-text="isShow ? 'sembunyikan' : 'tampilkan'"></button>
-	</div>
+        <button @click="isShow = !isShow" x-text="isShow ? 'sembunyikan' : 'tampilkan'"></button>
+    </div>
 
-	<h3>Keyboard event</h3>
+    <h3>Keyboard event</h3>
 
-	<div x-data="{teks: 'nilai awal'}">
-		<h3 x-text="teks"></h3>
+    <div x-data="{teks: 'nilai awal'}">
+        <h3 x-text="teks"></h3>
 
-		<input type="text" x-on:keyup.enter="teks = $el.value">
-	</div>
+        <input type="text" x-on:keyup.enter="teks = $el.value">
+    </div>
 
-	<h3>custom key</h3>
+    <h3>custom key</h3>
 
-	<h4>delete</h4>
+    <h4>delete</h4>
 
-	<input x-data type="text" @keydown="keydownCustom">
+    <input x-data type="text" @keydown="keydownCustom">
 
-	<script>
-		function keydownCustom(event) {
+    <script>
+        function keydownCustom(event) {
 
-			if (event.key == 'Delete' || event.key == 'Backspace') {
-				event.preventDefault();
-				alert('isian tidak dapat dihapus');
-			}
+            if (event.key == 'Delete' || event.key == 'Backspace') {
+                event.preventDefault();
+                alert('isian tidak dapat dihapus');
+            }
 
-		}
-	</script>
+        }
+    </script>
 
 
-	<h3>Custom Event</h3>
+    <h3>Custom Event</h3>
 
-	<div x-data @loading="alert('sedang loading')">
-		<button @click="$dispatch('loading')">picu loading</button>
-	</div>
+    <div x-data @loading="alert('sedang loading')">
+        <button @click="$dispatch('loading')">picu loading</button>
+    </div>
 
-	<h2>x-text</h2>
+    <h2>x-text</h2>
 
-	<p>Berfungsi untuk mengganti isi teks dari elemen HTML</p>
-	<p>Setara dengan <code>element.innerText</code> pada vanilla JavaScript</p>
+    <p>Berfungsi untuk mengganti isi teks dari elemen HTML</p>
+    <p>Setara dengan <code>element.innerText</code> pada vanilla JavaScript</p>
 
-	<p x-data x-text="'aswd'"></p>
-	<code x-data x-text="`console.log('hello world');`"></code>
+    <p x-data x-text="'aswd'"></p>
+    <code x-data x-text="`console.log('hello world');`"></code>
 
-	<div x-data="{
+    <div x-data="{
 		teks: 'nilai awal'
 	}">
-		<h3 x-text="teks"></h3>
-		<div x-text="teks"></div>
+        <h3 x-text="teks"></h3>
+        <div x-text="teks"></div>
 
-		<input type="text" @keyup="teks = $el.value">
-	</div>
+        <input type="text" @keyup="teks = $el.value">
+    </div>
 
-	<h2>x-html</h2>
+    <h2>x-html</h2>
 
-	<p>Berfungsi untuk mengganti isi HTML dari elemen HTML</p>
-	<p>setara dengan <code>element.innerHTML</code> pada vanilla JavaScript</p>
+    <p>Berfungsi untuk mengganti isi HTML dari elemen HTML</p>
+    <p>setara dengan <code>element.innerHTML</code> pada vanilla JavaScript</p>
 
-	<div x-data="{
+    <div x-data="{
 		html: 'nilai awal'
 	}">
-		<h3 x-html="html"></h3>
-		<div x-html="html"></div>
+        <h3 x-html="html"></h3>
+        <div x-html="html"></div>
 
-		<input type="text" @keyup="html = $el.value">
-	</div>
+        <input type="text" @keyup="html = $el.value">
+    </div>
 
 
-	<h2>x-model</h2>
+    <h2>x-model</h2>
 
-	<p>Berfungsi untuk mengikat properti dengan tag-tag input HTML secara dua arah</p>
+    <p>Berfungsi untuk mengikat properti dengan tag-tag input HTML secara dua arah</p>
 
-	<div x-data="{
+    <div x-data="{
 		teks: 'nilai awal'
 	}">
-		<h3 x-text="teks"></h3>
+        <h3 x-text="teks"></h3>
 
-		<input type="text" x-model="teks">
-		<textarea x-model="teks"></textarea>
-		<select x-model="teks">
-			<option value=""></option>
-			<option value="Indonesia">Indonesia</option>
-			<option value="Amerika">Amerika</option>
-			<option value="Cina">Cina</option>
-		</select>
-	</div>
+        <input type="text" x-model="teks">
+        <textarea x-model="teks"></textarea>
+        <select x-model="teks">
+            <option value=""></option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="Amerika">Amerika</option>
+            <option value="Cina">Cina</option>
+        </select>
+    </div>
 
-	<h3>Checkbox</h3>
+    <h3>Checkbox</h3>
 
-	<div x-data="{
+    <div x-data="{
 		ceklis1: false,
 		ceklis2: false,
 		ceklis3: false,
 		ceklis4: false,
 	}">
-		<input type="checkbox" x-model="ceklis1"> Cek list 1<br>
-		<input type="checkbox" x-model="ceklis2"> Cek list 2<br>
-		<input type="checkbox" x-model="ceklis3"> Cek list 3<br>
-		<input type="checkbox" x-model="ceklis4"> Cek list 4<br>
+        <input type="checkbox" x-model="ceklis1"> Cek list 1<br>
+        <input type="checkbox" x-model="ceklis2"> Cek list 2<br>
+        <input type="checkbox" x-model="ceklis3"> Cek list 3<br>
+        <input type="checkbox" x-model="ceklis4"> Cek list 4<br>
 
-		<h4>Hasil</h4>
-		<p x-text="ceklis1"></p>
-		<p x-text="ceklis2"></p>
-		<p x-text="ceklis3"></p>
-		<p x-text="ceklis4"></p>
-	</div>
+        <h4>Hasil</h4>
+        <p x-text="ceklis1"></p>
+        <p x-text="ceklis2"></p>
+        <p x-text="ceklis3"></p>
+        <p x-text="ceklis4"></p>
+    </div>
 
-	<h3>Radio</h3>
+    <h3>Radio</h3>
 
-	<div x-data="{
+    <div x-data="{
 		gender: null
 	}">
-		<input type="radio" name="gender" x-model="gender" value="laki-laki">Laki-laki<br>
-		<input type="radio" name="gender" x-model="gender" value="perempuan">perempuan<br>
+        <input type="radio" name="gender" x-model="gender" value="laki-laki">Laki-laki<br>
+        <input type="radio" name="gender" x-model="gender" value="perempuan">perempuan<br>
 
-		<p>hasil</p>
-		<p x-text="gender"></p>
-	</div>
+        <p>hasil</p>
+        <p x-text="gender"></p>
+    </div>
 
-	<h2>x-modelable</h2>
+    <h2>x-modelable</h2>
 
-	<p>Berfungsi untuk mengikat properti pada komponen saat ini ke atribut <code>x-model</code>-nya, untuk mengekspos
-		properti keluar komponen.</p>
+    <p>Berfungsi untuk mengikat properti pada komponen saat ini ke atribut <code>x-model</code>-nya, untuk mengekspos
+        properti keluar komponen.</p>
 
-	<!-- komponen1 -->
-	<div x-data="{ number: 5 }">
+    <!-- komponen1 -->
+    <div x-data="{ number: 5 }">
 
-		<!-- komponen1.1 -->
-		<div x-data="{ count: 0 }" x-modelable="count" x-model="number">
-			<button @click="count++">Increment</button>
-		</div>
+        <!-- komponen1.1 -->
+        <div x-data="{ count: 0 }" x-modelable="count" x-model="number">
+            <button @click="count++">Increment</button>
+        </div>
 
-		Number: <span x-text="number"></span>
-	</div>
+        Number: <span x-text="number"></span>
+    </div>
 
 
-	<h2>x-for</h2>
+    <h2>x-for</h2>
 
-	<p>Berfungsi untuk melakukan perulangan pada elemen HTML</p>
+    <p>Berfungsi untuk melakukan perulangan pada elemen HTML</p>
 
-	<h3>contoh untuk <code>&lt;ul&gt;</code>:</h3>
-	<ul x-data="{people: [
+    <h3>contoh untuk <code>&lt;ul&gt;</code>:</h3>
+    <ul x-data="{people: [
 			{name: 'Andi', age: 20, instagram: '@andi'},
 			{name: 'Budi', age: 21, instagram: '@budi'},
 			{name: 'Caca', age: 22, instagram: '@caca'},
 		]}">
 
-		<template x-for="person in people">
-			<li>
-				<h3 x-text="person.name"></h3>
-				<a :href="'https://instagram.com/' + person.instagram">instagram</a>
-			</li>
+        <template x-for="person in people">
+            <li>
+                <h3 x-text="person.name"></h3>
+                <a :href="'https://instagram.com/' + person.instagram">instagram</a>
+            </li>
 
-			<li>
-				<!-- hanya turunan pertama yang dianggap -->
-				test
-			</li>
-		</template>
-	</ul>
+            <li>
+                <!-- hanya turunan pertama yang dianggap -->
+                test
+            </li>
+        </template>
+    </ul>
 
-	<h3>Contoh untuk <code>&lt;table&gt;</code>:</h3>
+    <h3>Contoh untuk <code>&lt;table&gt;</code>:</h3>
 
-	<table border="1px" x-data="{teams: [
+    <table border="1px" x-data="{teams: [
 			{name: 'Barcelona', city: 'Barcelona', country: 'Spain'},
 			{name: 'Real Madrid', city: 'Madrid', country: 'Spain'},
 			{name: 'Manchester United', city: 'Manchester', country: 'England'},
 
 		]}">
 
-		<thead>
-			<tr>
-				<th>Team</th>
-				<th>City</th>
-				<th>Country</th>
-			</tr>
-		</thead>
-		<tbody>
-			<!-- Contoh manual -->
-			<!-- <tr>
+        <thead>
+            <tr>
+                <th>Team</th>
+                <th>City</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Contoh manual -->
+            <!-- <tr>
 				<td x-text="teams[0].name"></td>
 				<td x-text="teams[0].city"></td>
 				<td x-text="teams[0].country"></td>
@@ -359,147 +359,174 @@
 				<td x-text="teams[2].country"></td>
 			</tr> -->
 
-			<!-- Contoh dengan looping -->
-			<template x-for="team in teams">
-				<tr>
-					<td x-text="team.name"></td>
-					<td x-text="team.city"></td>
-					<td x-text="team.country"></td>
-				</tr>
-			</template>
-		</tbody>
-	</table>
+            <!-- Contoh dengan looping -->
+            <template x-for="team in teams">
+                <tr>
+                    <td x-text="team.name"></td>
+                    <td x-text="team.city"></td>
+                    <td x-text="team.country"></td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
 
-	<h2>x-transition</h2>
+    <h2>x-transition</h2>
 
-	<p>Berfungsi untuk membuat animasi pada elemen HTML</p>
+    <p>Berfungsi untuk membuat animasi pada elemen HTML</p>
 
-	<div x-data="{ isShow: false }">
-		<button @click="isShow = !isShow">Toggle</button>
+    <div x-data="{ isShow: false }">
+        <button @click="isShow = !isShow">Toggle</button>
 
-		<div x-show="isShow" x-transition>
-			<p>Ini adalah paragraf yang akan ditampilkan dan disembunyikan</p>
-		</div>
-	</div>
+        <div x-show="isShow" x-transition>
+            <p>Ini adalah paragraf yang akan ditampilkan dan disembunyikan</p>
+        </div>
+    </div>
 
-	<h2>x-if</h2>
+    <h2>x-if</h2>
 
-	<p>Berfungsi untuk menampilkan elemen HTML jika kondisi bernilai <code>true</code></p>
+    <p>Berfungsi untuk menampilkan elemen HTML jika kondisi bernilai <code>true</code></p>
 
-	<div x-data="{ isShow: false }">
-		<button @click="isShow = !isShow">Toggle</button>
+    <div x-data="{ isShow: false }">
+        <button @click="isShow = !isShow">Toggle</button>
 
-		<p x-text="if(isShow) {
+        <p x-text="if(isShow) {
 			return 'tampil';
 		} else {
 			return 'tidak tampil';
 		}"></p>
 
 
-		<p x-text="isShow ? 'tampil' : 'tidak tampil'"></p>
+        <p x-text="isShow ? 'tampil' : 'tidak tampil'"></p>
 
 
-		<template x-if="isShow">
-			<div>
-				<p>Ini adalah paragraf yang akan ditampilkan dan disembunyikan</p>
-			</div>
-		</template>
-	</div>
+        <template x-if="isShow">
+            <div>
+                <p>Ini adalah paragraf yang akan ditampilkan dan disembunyikan</p>
+            </div>
+        </template>
+    </div>
 
-	<h2>x-effect</h2>
+    <h2>x-effect</h2>
 
-	<p>Berfungsi untuk menjalankan baris kode javascript ketika parameter berubah</p>
+    <p>Berfungsi untuk menjalankan baris kode javascript ketika parameter berubah</p>
 
-	<div x-data="{ label: 'Hello'}" x-effect="console.log(label);">
-		<button @click="label += ' World!'">Change Message</button>
-	</div>
+    <div x-data="{ label: 'Hello'}" x-effect="console.log(label);">
+        <button @click="label += ' World!'">Change Message</button>
+    </div>
 
-	<h3>contoh</h3>
+    <h3>contoh</h3>
 
-	<p>kalkulator akar</p>
+    <p>kalkulator akar</p>
 
-	<div x-data="{input: 0, output: 0}">
-		<h4>Hasil:</h4>
+    <div x-data="{input: 0, output: 0}">
+        <h4>Hasil:</h4>
 
-		<p x-effect="output = Math.sqrt(input)" x-text="output"></p>
+        <p x-effect="output = Math.sqrt(input)" x-text="output"></p>
 
-		<input type="number" x-model="input">
-	</div>
-
-
-
-	<h2>x-ignore</h2>
-
-	<p>Berfungsi untuk mengabaikan komponen alpine di dalamnya</p>
-
-	<div x-data="{ label: 'From Alpine' }">
-		<div x-ignore>
-			<span x-text="label"></span>
-
-			<div x-data x-text="'test ignore'"></div>
-		</div>
-	</div>
+        <input type="number" x-model="input">
+    </div>
 
 
-	<h2>x-ref</h2>
 
-	<p>Untuk membuat referensi (reference) terhadap elemen untuk dimanipulasi</p>
+    <h2>x-ignore</h2>
 
-	<h3>Contoh 1</h3>
-	<div x-data>
-		<button @click="$refs.text.remove()">Remove Text</button>
+    <p>Berfungsi untuk mengabaikan komponen alpine di dalamnya</p>
 
-		<span x-ref="text">Hello 👋</span>
-	</div>
+    <div x-data="{ label: 'From Alpine' }">
+        <div x-ignore>
+            <span x-text="label"></span>
 
-	<h3>Contoh 2</h3>
+            <div x-data x-text="'test ignore'"></div>
+        </div>
+    </div>
 
-	<div x-data>
-		<h4 x-ref="text1">Text 1</h4>
-		<h4 x-ref="text2">Text 2</h4>
-		<h4 x-ref="text3">Text 3</h4>
 
-		<div x-data x-init="
+    <h2>x-ref</h2>
+
+    <p>Untuk membuat referensi (reference) terhadap elemen untuk dimanipulasi</p>
+
+    <h3>Contoh 1</h3>
+    <div x-data>
+        <button @click="$refs.text.remove()">Remove Text</button>
+
+        <span x-ref="text">Hello 👋</span>
+    </div>
+
+    <h3>Contoh 2</h3>
+
+    <div x-data>
+        <h4 x-ref="text1">Text 1</h4>
+        <h4 x-ref="text2">Text 2</h4>
+        <h4 x-ref="text3">Text 3</h4>
+
+        <div x-data x-init="
 			$refs.text1.style.color='red';
 			$refs.text2.style.backgroundColor='red';
 			$refs.text3.style.backgroundColor='blue';
 		"></div>
 
-		<button @click="$refs.text1.style.color='red';">color to red</button>
-		<button @click="$refs.text1.style.color='black';">color to black</button>
-	</div>
+        <button @click="$refs.text1.style.color='red';">color to red</button>
+        <button @click="$refs.text1.style.color='black';">color to black</button>
+    </div>
 
 
-	<h2>x-id</h2>
+    <h2>x-id</h2>
 
-	<div>
-		<label for="input1">input1</label>
-		<input type="text" name="" id="input1">
-	</div>
+    <div>
+        <label for="input1">input1</label>
+        <input type="text" name="" id="input1">
+    </div>
 
-	<div>
-		<!-- id bentrok -->
-		<label for="input1">input1</label>
-		<input type="text" name="" id="input1">
-	</div>
+    <div>
+        <!-- id bentrok -->
+        <label for="input1">input1</label>
+        <input type="text" name="" id="input1">
+    </div>
 
-	<div x-data="{ id: $id('text-input') }">
-		<label :for="id">Input2</label>
-		<!-- "text-input-2" -->
+    <div x-data="{ id: $id('text-input') }">
+        <label :for="id">Input2</label>
+        <!-- "text-input-2" -->
 
-		<input type="text" :id="id"> <!-- "text-input-2" -->
-	</div>
+        <input type="text" :id="id"> <!-- "text-input-2" -->
+    </div>
 
-	<div x-data="{ id: $id('text-input') }">
-		<label :for="id">input3</label>
-		<!-- "text-input-3" -->
+    <div x-data="{ id: $id('text-input') }">
+        <label :for="id">input3</label>
+        <!-- "text-input-3" -->
 
-		<input type="text" :id="id"> <!-- "text-input-3" -->
-	</div>
+        <input type="text" :id="id"> <!-- "text-input-3" -->
+    </div>
+
+    <h2>x-cloak</h2>
+
+    <p>Berfungsi untuk menghilangkan flash/blip pada saat komponen alpine belum diinisialisasi</p>
+
+    <h3>Kasus</h3>
+
+    <span x-data x-show="false">Ini bakal ngeblip</span>
+    <span x-data x-cloak x-show="false">Ini gak bakal ngeblip</span>
 
 
+    <h2>x-teleport</h2>
 
-	<div style="margin-bottom: 50vh;"></div>
+    <p>Berfungsi untuk memindahkan elemen HTML ke luar komponen alpine</p>
+
+    <h3>Contoh</h3>
+
+    <div x-data>
+        <template x-teleport="#tempat-teleport">
+            <div>
+                ini ter-teleport...
+            </div>
+        </template>
+    </div>
+
+    <div>Seharusnya komponen yang di-teleport akan muncul setelah elemen ini.</div>
+
+    <div id="tempat-teleport">
+    </div>
+
+    <div style="margin-bottom: 50vh;"></div>
 </body>
 
 </html>

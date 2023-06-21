@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6 Properti</title>
+
+    <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+
+<body>
+    <h1>Properti-properti di Alpine</h1>
+
+    <h2>$el</h2>
+
+    <P>
+        Properti <code>$el</code> adalah elemen HTML yang diikat oleh Alpine.
+    </P>
+
+    <h3>Contoh</h3>
+
+    <div x-data x-init="$el.style.backgroundColor = 'red'">
+        <p x-init="$el.innerText = 'ini init'" @click="$el.innerText='ini onclick'"></p>
+
+        <p x-init="$el.innerText = 'ini init elemen 2'"></p>
+    </div>
+
+    <h2>$refs</h2>
+
+    <p>
+        Properti <code>$refs</code> adalah objek yang berisi referensi ke elemen HTML yang diikat oleh Alpine.
+    </p>
+
+    <h3>contoh</h3>
+
+    <div x-data>
+        <button @click="$refs.teks1.remove()">Remove Text</button>
+
+        <span x-ref="teks1">Hello 👋</span>
+
+        <span x-ref="teks2">Hello 👋</span>
+    </div>
+
+    <div x-data>
+        <button @click="$refs.teks1.remove()">Remove Text</button>
+
+        <!-- nama x-ref bisa sama selama beda x-data -->
+        <span x-ref="teks1">Hello 👋</span>
+    </div>
+
+    <a href="../a-atribut/index.html#x-ref">lihat materi atribut x-ref</a>
+
+    <h2>$store</h2>
+
+    <p>
+        Properti <code>$store</code> adalah objek yang berisi data yang diikat oleh Alpine.
+    </p>
+
+    <h3>Contoh 1</h3>
+
+    <div x-data x-text="$store.user.name"></div>
+
+    <div x-data x-text="$store.user.name"></div>
+
+    <button x-data @click="$store.user.setName('Budi')">Ubah nama pengguna</button>
+
+    <div x-data x-text="$store.contohSingleValue"></div>
+
+    <h3>Contoh 2</h3>
+
+    <div x-data x-text="$store.user.name"></div>
+
+    <div x-data x-text="$store.user.name"></div>
+
+    <div x-data>
+        <input x-ref="inputNama" />
+        <button @click="$store.user.setName($refs.inputNama.value)">submit</button>
+    </div>
+
+    <h3>Contoh 3</h3>
+
+    <div x-data>
+        Halo, Selamat datang, <span x-text="$store.user.name"></span>
+    </div>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            // Alpine.store('NAMA PROPERTI', 'NILAI');
+
+            Alpine.store('user', {
+                name: 'John Doe',
+                age: 30,
+
+                setName(namaBaru) {
+                    this.name = namaBaru;
+                }
+            })
+
+            Alpine.store('contohSingleValue', 'ini contoh single value');
+
+        })
+    </script>
+
+</body>
+
+</html>

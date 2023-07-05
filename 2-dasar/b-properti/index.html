@@ -12,7 +12,7 @@
 <body>
     <h1>Properti-properti di Alpine</h1>
 
-    <h2>$el</h2>
+    <h2>1. $el</h2>
 
     <P>
         Properti <code>$el</code> adalah elemen HTML yang diikat oleh Alpine.
@@ -26,7 +26,18 @@
         <p x-init="$el.innerText = 'ini init elemen 2'"></p>
     </div>
 
-    <h2>$refs</h2>
+    <h3>Contoh lain</h3>
+
+    <div x-data x-init="$el.style.backgroundColor = 'green'">
+        <p
+            x-init="$el.style.backgroundColor = 'red'"
+            @click="$el.innerText='ini onclick'">
+                ini P pertama
+            </p>
+        <p x-init="$el.style.backgroundColor = 'blue'">ini P kedua</p>
+    </div>
+
+    <h2>2. $refs</h2>
 
     <p>
         Properti <code>$refs</code> adalah objek yang berisi referensi ke elemen HTML yang diikat oleh Alpine.
@@ -37,9 +48,9 @@
     <div x-data>
         <button @click="$refs.teks1.remove()">Remove Text</button>
 
-        <span x-ref="teks1">Hello 👋</span>
+        <span x-ref="teks1">Hello ini span pertama 👋</span>
 
-        <span x-ref="teks2">Hello 👋</span>
+        <span x-ref="teks2">Hello ini span kedua 👋</span>
     </div>
 
     <div x-data>
@@ -51,7 +62,7 @@
 
     <a href="../a-atribut/index.html#x-ref">lihat materi atribut x-ref</a>
 
-    <h2>$store</h2>
+    <h2>3. $store</h2>
 
     <p>
         Properti <code>$store</code> adalah objek yang berisi data yang diikat oleh Alpine.

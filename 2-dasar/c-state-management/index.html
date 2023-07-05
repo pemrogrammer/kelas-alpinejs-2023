@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh State Management</title>
+
+    <script src="//unpkg.com/alpinejs" defer></script>
+
+    <style>
+        [x-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Contoh State Management</h1>
+
+    <div x-data x-cloak x-show="$store.formNumber === 1">
+        <h2>1. Formulir Akun</h2>
+        <form @submit="event => 
+            event.preventDefault();
+
+            // fetch('url', {
+            console.log('submit form 1');
+
+            $store.formNumber = 2;
+            ">
+            <input
+                @change="$store.dataIsian.email = $el.value"
+                required
+                type="email"
+                name="email"
+                placeholder="Email">
+
+            <input
+                @change="$store.dataIsian.password = $el.value"
+                required
+                type="password"
+                name="password"
+                placeholder="Password">
+
+            <button>Simpan</button>
+        </form>
+    </div>
+
+    <div x-data x-cloak x-show="$store.formNumber === 2">
+        <h2>2. Formulir Data Diri</h2>
+        <form @submit="function(event) {
+            event.preventDefault();
+
+            // seolah-olah ngirim data
+            console.log('submit form 2');
+
+            $store.formNumber = 3;
+        }">
+            <input
+                @change="$store.dataIsian.name = $el.value"
+                required
+                type="text"
+                name="nama"
+                placeholder="Nama">
+
+            <input type="text" name="alamat" placeholder="Alamat">
+            <input type="text" name="kota" placeholder="Kota">
+            <input type="text" name="kodepos" placeholder="Kode Pos">
+
+            <button>Simpan</button>
+        </form>
+    </div>
+
+    <div x-data x-cloak x-show="$store.formNumber === 3">
+        <h2>3. Formulir Data Rekening</h2>
+        <form @submit="handleSubmitForm3">
+            <input type="text" name="nomor" placeholder="Nomor">
+            <input type="text" name="bank" placeholder="Bank">
+
+            <button>Simpan</button>
+        </form>
+    </div>
+
+    <div x-data x-show="$store.formNumber === ''">
+        <p x-text="`Terima kasih ${$store.dataIsian.name}, sudah mengisi formulir`"></p>
+    </div>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.store('formNumber', 1);
+
+            Alpine.store('dataIsian', {
+                email: '',
+                password: '',
+                name: '',
+
+                // data diri
+                // ....
+            })
+        })
+
+        function handleSubmitForm3(event) {
+            event.preventDefault();
+
+            // seolah-olah ngirim data
+            console.log('submit form 3');
+            
+            Alpine.store('formNumber', '');
+        }
+    </script>
+</body>
+
+</html>

@@ -7,6 +7,16 @@
     <title>6 Properti</title>
 
     <script src="//unpkg.com/alpinejs" defer></script>
+
+    <style>
+        [x-cloak] {
+            display: none;
+        }
+
+        body {
+            margin-bottom: 10em;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,11 +39,9 @@
     <h3>Contoh lain</h3>
 
     <div x-data x-init="$el.style.backgroundColor = 'green'">
-        <p
-            x-init="$el.style.backgroundColor = 'red'"
-            @click="$el.innerText='ini onclick'">
-                ini P pertama
-            </p>
+        <p x-init="$el.style.backgroundColor = 'red'" @click="$el.innerText='ini onclick'">
+            ini P pertama
+        </p>
         <p x-init="$el.style.backgroundColor = 'blue'">ini P kedua</p>
     </div>
 
@@ -95,7 +103,82 @@
         Halo, Selamat datang, <span x-text="$store.user.name"></span>
     </div>
 
+    <h2>4. $watch</h2>
+
+    <p>
+        Properti <code>$watch</code> adalah objek yang berisi fungsi yang akan dipanggil ketika properti yang diikat
+        oleh Alpine berubah.
+    </p>
+
+    <h3>Contoh 1</h3>
+
+    <div x-data="{ nama: 'John Doe', umur: 30 }">
+        <input type="text" x-model="nama" />
+        <input type="number" x-model="umur" />
+
+        <div x-text="nama"></div>
+        <div x-text="umur"></div>
+
+        <div x-text="$watch('nama', value => console.log('nama berubah menjadi: ' + value))"></div>
+        <div x-text="$watch('umur', () => console.log('umur berubah'))"></div>
+    </div>
+
+    <h3>Contoh 2: Pokemon Card</h3>
+
+    <div x-data="{
+        isOpenPreview: false,
+        searchText: '',
+        dataPokemon: {},
+    }">
+        <div x-show="isOpenPreview" x-init="$watch('isOpenPreview', () => {
+            if(isOpenPreview) {
+                fetch('https://pokeapi.co/api/v2/pokemon/' + searchText)
+                    .then(response => response.json())
+                    .then(data => dataPokemon = data)
+            }
+        })">
+            <h1 x-text="dataPokemon.name"></h1>
+            <p x-text="'Bobot: ' + dataPokemon.weight"></p>
+        </div>
+
+        <input type="text" placeholder="Tulis nama Pokemon" x-model="searchText">
+        <button @click="isOpenPreview = !isOpenPreview">Lihat Pokemon</button>
+    </div>
+
+    <h2>5. $dispatch</h2>
+
+    <p>
+        Properti <code>$dispatch</code> adalah fungsi yang memungkinkan Anda mengirimkan event ke elemen lain.
+    </p>
+
+    <h3>Contoh 1</h3>
+
+    <div x-data>
+        <div @notify="alert('Hello World!')">
+            <button @click="$dispatch('notify')">
+                Notify
+            </button>
+        </div>
+    </div>
+
+    <h3>Contoh 2</h3>
+    <div x-data="{
+        nama: ''
+    }">
+        <h1 @tombol-diklik.window="nama = $event.detail" x-text="nama"></h1>
+    </div>
+
+    <div x-data>
+        <input type="text" x-ref="inputNama">
+        <button @click="$dispatch('tombol-diklik', $refs.inputNama.value)">Kirim</button>
+    </div>
+
+
     <script>
+        document.addEventListener('tombol-diklik', event => {
+            // fetch('')
+        })
+
         document.addEventListener('alpine:init', () => {
             // Alpine.store('NAMA PROPERTI', 'NILAI');
 

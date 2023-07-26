@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2 Metode</title>
+
+    <script src="//unpkg.com/alpinejs" defer></script>
+
+    <style>
+        [x-cloak] {
+            display: none;
+        }
+
+        body {
+            margin-bottom: 10em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Metode-Metode dalam Alpine</h1>
+
+    <h2>Alpine.data</h2>
+
+    <p>
+        Metode <code>Alpine.data</code> digunakan untuk mendefinisikan konteks (objek untuk x-data) komponen Alpine yang
+        dapat digunakan berulang kali.
+    </p>
+
+    <h3>Contoh</h3>
+
+    <div x-data="dropdownx">
+        <button @click="toggle">lihat konten</button>
+
+        <div x-show="open" x-cloak>konten</div>
+    </div>
+
+    <div x-data="dropdownx">
+        <button @click="toggle">lihat konten</button>
+
+        <div x-show="open" x-cloak>konten</div>
+    </div>
+
+    <h2>Alpine.store</h2>
+
+    <p>
+        Metode <code>Alpine.store</code> digunakan untuk membuat objek yang bersifat global yang dapat diakses dan
+        dimanipulasi dari komponen mana saja
+    </p>
+
+    <h3>Contoh</h3>
+
+    <div x-data>
+        <button @click="$store.dropdowny.toggle()">lihat konten</button>
+        <div x-show="$store.dropdowny.open" x-cloak>konten</div>
+    </div>
+
+    <div x-data>
+        <button @click="$store.dropdowny.toggle()">lihat konten</button>
+        <div x-show="$store.dropdowny.open" x-cloak>konten</div>
+    </div>
+
+    <h2>Alpine.bind</h2>
+
+    <p>
+        Metode <code>Alpine.bind</code> digunakan untuk mendefinisikan template atribut-atribut yang dapat digunakan berulang kali.
+    </p>
+
+    <div x-data>
+        <button x-bind="SomeButton">Tombol 1</button>
+        <button>Tombol 2</button>
+        <button x-bind="SomeButton">Tombol 3</button>
+        <button x-bind="SomeButton">Tombol 4</button>
+        <button x-bind="SomeButton">Tombol 5</button>
+    </div>
+
+
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('dropdownx', () => ({
+                open: false,
+
+                toggle() {
+                    this.open = !this.open
+                }
+            }))
+
+            Alpine.store('dropdowny', {
+                open: false,
+
+                toggle() {
+                    this.open = !this.open
+                }
+            })
+
+            Alpine.bind('SomeButton', () => ({
+                type: 'button',
+
+                style: 'background-color: red; color: white;',
+
+                'x-init': 'console.log("tombol diinisialisasi")',
+
+                '@click'() {
+                    console.log('tombol diklik')
+                },
+
+                ':disabled'() {
+                    return this.shouldDisable
+                },
+            }))
+        })
+    </script>
+</body>

@@ -173,8 +173,131 @@
         <button @click="$dispatch('tombol-diklik', $refs.inputNama.value)">Kirim</button>
     </div>
 
+    <h2>6. $nextTick</h2>
+
+    <p>
+        Properti <code>$nextTick</code> adalah fungsi yang memungkinkan Anda menunggu sampai Alpine selesai memperbarui
+        DOM sebelum menjalankan fungsi lain.
+    </p>
+
+    <p>Sederhananya, <i>callback</i> di dalam `$nextTick` akan dieksekusi setelah halaman selesai di-<i>re/render</i>
+        (tidak ada proses render lagi)</p>
+
+    <h3>Contoh 1</h3>
+
+    <div x-data="{ title: 'Hello' }">
+        <button @click="
+            $nextTick(() => { console.log('nextTick:', $el.innerText) });
+                title = 'Hello World!';
+                console.log('console biasa:', $el.innerText);
+            " x-text="title"></button>
+    </div>
+
+    <h2>$root</h2>
+
+    <p>
+        Properti <code>$root</code> adalah objek yang merupakan <i>parent</i> dari objek tempat di mana dia dipanggil.
+    </p>
+
+    <p>
+        $root adalah objek (DOM) yang merupakan komponen Alpine (element yang memiliki x-data / x-data terdekat dari
+        element tempat di mana $root dipanggil) sedangkan $el.parentNode
+        hanya satu tingkat di atas DOM tersebut.
+    </p>
+
+    <h3>Contoh 1</h3>
+
+    <div id="induk" x-data>
+        <div id="anak">
+            <button id="cucu" @click="
+            console.log('$el.id:', $el.id);
+            console.log('$el.parentNode.id:', $el.parentNode.id);
+
+            console.log('$root.id:', $root.id);
+        ">Klik Saya</button>
+        </div>
+    </div>
+
+    <h3>Contoh 2</h3>
+
+    <div id="induk" x-data>
+
+        <div id="anak1" x-data>
+            <button id="cucu11" @click="
+            console.log('$el.id:', $el.id);
+            console.log('$el.parentNode.id:', $el.parentNode.id);
+
+            console.log('$root.id:', $root.id);
+        ">Klik Saya</button>
+        </div>
+
+        <div id="anak2">
+            <button id="cucu21" @click="
+            console.log('$el.id:', $el.id);
+            console.log('$el.parentNode.id:', $el.parentNode.id);
+
+            console.log('$root.id:', $root.id);
+        ">Klik Saya</button>
+        </div>
+
+    </div>
+
+    <h2>$data</h2>
+
+    <p>
+        Properti <code>$data</code> adalah objek yang berisi data yang diikat oleh Alpine.
+    </p>
+
+    <p>
+        Properti <code>$data</code> merupakan enkapsulasi dari semua x-data sehingga dapat mengelola nilai x-data milik
+        parent atau grandparent melalui satu objek saja.
+    </p>
+
+    <h3>Contoh</h3>
+
+    <div x-data="{ greeting: 'Hello' }">
+        <div x-data="{ name: 'Caleb' }">
+            <button @click="sayHello($data)">Say Hello</button>
+        </div>
+
+        <div x-data="{ nama: 'Zain' }">
+            <button @click="sayHello($data)">Bilang Halo</button>
+        </div>
+    </div>
+
+    <h2>$id</h2>
+
+    <p>
+        Properti <code>$id</code> adalah string yang berisi ID unik dari elemen HTML yang diikat oleh Alpine.
+    </p>
+
+    <h3>Contoh 1</h3>
+
+    <div x-data>
+        <button @click="console.log($id('test'))">Generate ID</button>
+    </div>
+
+    <h3>Contoh 2</h3>
+
+    <div x-data>
+        <template x-for="i in 10">
+            <button :id="$id('tombol')" x-text="$el.id"></button>
+        </template>
+
+        <br>
+
+        <button @click="
+            document.getElementById('tombol-3').remove();
+        ">hapus tombol 3</button>
+    </div>
+
+
 
     <script>
+        function sayHello({ greeting, name, nama }) {
+            console.log(greeting, name, nama)
+        }
+
         document.addEventListener('tombol-diklik', event => {
             // fetch('')
         })
